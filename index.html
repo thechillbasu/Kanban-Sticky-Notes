@@ -18,9 +18,11 @@
   </div>
 
   <div class="app-header__right">
-    <button id="themeToggle" class="theme-toggle" type="button">
-      🌙 Dark mode
-    </button>
+   <button id="themeToggle" class="theme-toggle" type="button">
+  <i class="fas fa-moon" aria-hidden="true"></i>
+  <span class="theme-toggle__label">Dark mode</span>
+</button>
+
   </div>
 </header>
 <!-- ===== End Sarthak sharma's UI Header Contribution ===== -->
@@ -33,6 +35,12 @@
         id="noteText" 
         placeholder="Enter note text..." 
         required>
+      
+      <select id="prioritySelect">
+        <option value="high">High Priority</option>
+        <option value="medium" selected>Medium Priority</option>
+        <option value="low">Low Priority</option>
+      </select>
       
       <select id="columnSelect">
         <option value="todo">To Do</option>
@@ -65,9 +73,7 @@
     </div>
   </div>
   
-  <script src="js/storage.js"></script>
-  <script src="js/dragDrop.js"></script>
   <script src="js/theme.js"></script>
-  <script src="js/main.js"></script>
+  <script type="module" src="js/main.js"></script>
 </body>
 </html>

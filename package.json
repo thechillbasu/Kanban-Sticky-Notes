@@ -1,0 +1,14 @@
+{
+  "name": "kanban-sticky-notes",
+  "version": "1.0.0",
+  "description": "Kanban Sticky Notes Board with enhanced task management",
+  "type": "module",
+  "scripts": {
+    "test": "vitest --run"
+  },
+  "devDependencies": {
+    "vitest": "^1.0.0",
+    "fast-check": "^3.15.0",
+    "jsdom": "^23.0.0"
+  }
+}

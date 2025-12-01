@@ -1,55 +1,109 @@
-// Theme management
-const THEME_KEY = 'kanban-theme';
+// ==========================================
+// Theme management & Dark Mode system
+// Implemented by Sarthak Sharma
+// ==========================================
 
-function getTheme() {
-  const savedTheme = localStorage.getItem(THEME_KEY);
-  if (savedTheme) {
-    return savedTheme;
+const THEME_STORAGE_KEY = "kanban-theme";
+
+/**
+ * Decide which theme should be active:
+ * 1. If user chose before -> use stored
+ * 2. Else follow system preference
+ * 3. Fallback to light
+ */
+function getPreferredTheme() {
+  const stored = localStorage.getItem(THEME_STORAGE_KEY);
+  if (stored === "light" || stored === "dark") {
+    return stored;
   }
-  
-  // Check system preference
-  if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-    return 'dark';
+
+  if (
+    window.matchMedia &&
+    window.matchMedia("(prefers-color-scheme: dark)").matches
+  ) {
+    return "dark";
   }
-  
-  return 'light';
+
+  return "light";
 }
 
+/**
+ * Apply theme to DOM (HTML + body) and update button UI
+ */
+function applyTheme(theme) {
+  const isDark = theme === "dark";
+
+  // Hook for CSS you wrote (body.dark-mode {...})
+  document.body.classList.toggle("dark-mode", isDark);
+
+  // Optional: keep html[data-theme] for future theming
+  if (isDark) {
+    document.documentElement.setAttribute("data-theme", "dark");
+  } else {
+    document.documentElement.removeAttribute("data-theme");
+  }
+
+  const btn = document.getElementById("themeToggle");
+  if (!btn) return;
+
+  const icon = btn.querySelector("i");
+  const label = btn.querySelector(".theme-toggle__label");
+
+  if (icon) {
+    icon.className = isDark ? "fas fa-sun" : "fas fa-moon";
+  }
+  if (label) {
+    label.textContent = isDark ? "Light mode" : "Dark mode";
+  }
+}
+
+/**
+ * Persist theme choice and apply it
+ */
 function setTheme(theme) {
-  if (theme === 'dark') {
-    document.documentElement.setAttribute('data-theme', 'dark');
-  } else {
-    document.documentElement.removeAttribute('data-theme');
-  }
-  
-  localStorage.setItem(THEME_KEY, theme);
-  updateThemeIcon(theme);
+  localStorage.setItem(THEME_STORAGE_KEY, theme);
+  applyTheme(theme);
 }
 
-function updateThemeIcon(theme) {
-  const themeToggle = document.getElementById('themeToggle');
-  const icon = themeToggle.querySelector('i');
-  
-  if (theme === 'dark') {
-    icon.className = 'fas fa-sun';
-  } else {
-    icon.className = 'fas fa-moon';
-  }
-}
-
+/**
+ * Switch between light and dark
+ */
 function toggleTheme() {
-  const currentTheme = getTheme();
-  const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-  setTheme(newTheme);
+  const current = getPreferredTheme();
+  const next = current === "dark" ? "light" : "dark";
+  setTheme(next);
 }
 
-function initTheme() {
-  const theme = getTheme();
-  setTheme(theme);
-  
-  const themeToggle = document.getElementById('themeToggle');
-  themeToggle.addEventListener('click', toggleTheme);
-}
+/**
+ * Initialise on page load
+ */
+document.addEventListener("DOMContentLoaded", () => {
+  const initial = getPreferredTheme();
+  applyTheme(initial);
 
-// Initialize theme on page load
-document.addEventListener('DOMContentLoaded', initTheme);
+  const btn = document.getElementById("themeToggle");
+  if (btn) {
+    btn.addEventListener("click", toggleTheme);
+  }
+
+  // Optional: react to system theme changes if user hasn't chosen manually
+  if (window.matchMedia) {
+    const media = window.matchMedia("(prefers-color-scheme: dark)");
+
+    const handleChange = (event) => {
+      const stored = localStorage.getItem(THEME_STORAGE_KEY);
+      if (stored === "light" || stored === "dark") {
+        // user already chose; don't override
+        return;
+      }
+      applyTheme(event.matches ? "dark" : "light");
+    };
+
+    if (media.addEventListener) {
+      media.addEventListener("change", handleChange);
+    } else if (media.addListener) {
+      // older browsers
+      media.addListener(handleChange);
+    }
+  }
+});

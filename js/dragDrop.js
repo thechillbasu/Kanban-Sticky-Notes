@@ -1,4 +1,7 @@
-function initDragAndDrop() {
+import { getNotes, setNotes, getTimerManager } from './main.js';
+import { saveNotes } from './storage.js';
+
+export function initDragAndDrop() {
   const allNotes = document.querySelectorAll('.stickyNote');
   
   allNotes.forEach(note => {
@@ -40,17 +43,38 @@ function handleDrop(event) {
   const newColumn = column.id;
   const noteId = parseInt(event.dataTransfer.getData('text/plain'));
   
-  const noteElement = document.querySelector(`[data-note-id="${noteId}"]`);
-  const notesContainer = column.querySelector('.notesContainer');
-  
-  // move note to new column
-  notesContainer.appendChild(noteElement);
-  
   // update note data
+  const notes = getNotes();
   const noteIndex = notes.findIndex(note => note.id === noteId);
   if (noteIndex !== -1) {
-    notes[noteIndex].column = newColumn;
+    const note = notes[noteIndex];
+    const oldColumn = note.column;
+    note.column = newColumn;
+    
+    // Timer management based on column transitions
+    const timerManager = getTimerManager();
+    
+    // Start timer when moving to In Progress
+    if (newColumn === 'inprogress' && oldColumn !== 'inprogress') {
+      note.startedAt = Date.now();
+      timerManager.startTimer(noteId, note.startedAt);
+    }
+    
+    // Stop timer and record time when leaving In Progress
+    if (oldColumn === 'inprogress' && newColumn !== 'inprogress') {
+      const elapsedTime = timerManager.stopTimer(noteId);
+      note.timeSpent = (note.timeSpent || 0) + elapsedTime;
+      
+      // Set completedAt if moving to Done
+      if (newColumn === 'done') {
+        note.completedAt = Date.now();
+      }
+    }
+    
     saveNotes(notes);
+    
+    // Trigger re-render by dispatching custom event
+    window.dispatchEvent(new CustomEvent('notesUpdated'));
   }
   
   column.classList.remove('dropTarget');
