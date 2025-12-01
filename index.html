@@ -4,13 +4,13 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Kanban Sticky Notes Board</title>
-  
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" 
-        crossorigin="anonymous">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <!-- ===== Sarthak sharma's UI Header Contribution ===== -->
+
+<!-- ===== HEADER (Sarthak Sharma Contribution) ===== -->
 <header class="app-header">
   <div class="app-header__left">
     <h1 class="app-title">Kanban Sticky Notes</h1>
@@ -18,58 +18,64 @@
   </div>
 
   <div class="app-header__right">
-   <button id="themeToggle" class="theme-toggle" type="button">
-  <i class="fas fa-moon" aria-hidden="true"></i>
-  <span class="theme-toggle__label">Dark mode</span>
-</button>
-
+    <button id="themeToggle" class="theme-toggle" type="button">
+      <i class="fas fa-moon"></i>
+      <span class="theme-toggle__label">Dark mode</span>
+    </button>
   </div>
 </header>
-<!-- ===== End Sarthak sharma's UI Header Contribution ===== -->
+<!-- ===== END HEADER ===== -->
 
-  <div class="container">
-    
-    <form id="addNoteForm">
-      <input 
-        type="text" 
-        id="noteText" 
-        placeholder="Enter note text..." 
-        required>
-      
-      <select id="columnSelect">
-        <option value="todo">To Do</option>
-        <option value="inprogress">In Progress</option>
-        <option value="done">Done</option>
-      </select>
-      
-      <button type="submit">Add Note</button>
-    </form>
-    
-    <div class="board">
-      <div class="boardColumn" id="todo">
-        <h2>To Do</h2>
-        <div class="notesContainer"></div>
-      </div>
-      
-      <div class="boardColumn" id="inprogress">
-        <h2>In Progress</h2>
-        <div class="notesContainer"></div>
-      </div>
-      
-      <div class="boardColumn" id="done">
-        <h2>Done</h2>
-        <div class="notesContainer"></div>
-      </div>
+<div class="container">
+
+  <!-- Add Note UI -->
+  <form id="addNoteForm">
+    <input type="text" id="noteText" placeholder="Enter note text..." required>
+
+    <select id="prioritySelect">
+      <option value="low">Low Priority</option>
+      <option value="medium">Medium Priority</option>
+      <option value="high">High Priority</option>
+    </select>
+
+    <select id="columnSelect">
+      <option value="todo">To Do</option>
+      <option value="inprogress">In Progress</option>
+      <option value="done">Done</option>
+    </select>
+
+    <button type="submit">Add Note</button>
+  </form>
+
+  <!-- Kanban Board -->
+  <div class="board">
+
+    <div class="boardColumn" id="todo">
+      <h2>To Do</h2>
+      <div class="notesContainer"></div>
     </div>
-    
-    <div id="emptyState" class="emptyState">
-      <p>Your board is empty. Add your first note to get started!</p>
+
+    <div class="boardColumn" id="inprogress">
+      <h2>In Progress</h2>
+      <div class="notesContainer"></div>
     </div>
+
+    <div class="boardColumn" id="done">
+      <h2>Done</h2>
+      <div class="notesContainer"></div>
+    </div>
+
   </div>
-  
-  <script src="js/storage.js"></script>
-  <script src="js/dragDrop.js"></script>
-  <script src="js/theme.js"></script>
-  <script src="js/main.js"></script>
+
+  <div id="emptyState" class="emptyState">
+    <p>Your board is empty. Add your first note!</p>
+  </div>
+
+</div>
+
+<script src="js/storage.js"></script>
+<script src="js/dragDrop.js"></script>
+<script src="js/theme.js"></script>
+<script src="js/main.js"></script>
 </body>
 </html>

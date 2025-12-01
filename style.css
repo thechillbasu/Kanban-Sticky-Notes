@@ -633,3 +633,72 @@ body.dark-mode .add-note-btn {
 .theme-toggle__label {
   font-size: 0.8rem;
 }
+/* Different colors per column */
+#todo-column .note {
+  background-color: #fff7b3; /* Yellow */
+}
+
+#inprogress-column .note {
+  background-color: #cfe4ff; /* Light Blue */
+}
+
+#done-column .note {
+  background-color: #c8f7c5; /* Light Green */
+}
+/* ================================
+   PATCH: Column Based Note Colors
+   ================================ */
+
+#todo .stickyNote {
+  background-color: #fff7b3 !important; /* Yellow */
+}
+
+#inprogress .stickyNote {
+  background-color: #cfe4ff !important; /* Light Blue */
+}
+
+#done .stickyNote {
+  background-color: #c8f7c5 !important; /* Light Green */
+}
+
+/* ================================
+   PATCH: Priority System Colors
+   ================================ */
+
+.priority-high {
+  border-left: 6px solid red !important;
+}
+
+.priority-medium {
+  border-left: 6px solid orange !important;
+}
+
+.priority-low {
+  border-left: 6px solid green !important;
+}
+
+/* ================================
+   PATCH: Timestamp + Timer Styling
+   ================================ */
+
+.timestamp,
+.timer {
+  font-size: 10px;
+  opacity: 0.7;
+  margin-top: 6px;
+  display: block;
+  color: var(--text-light);
+}
+/* ================================
+   PATCH: Sticky Note Hover Upgrade
+   ================================ */
+
+.stickyNote {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  padding-left: 12px; /* space for priority border */
+}
+
+.stickyNote:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
