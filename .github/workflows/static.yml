@@ -32,14 +32,12 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
       - name: Setup Pages
-              - name: Copy src to public
-        run: cp -r src public/
         uses: actions/configure-pages@v5
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          # Upload entire repository
-          path: './public'
+          # Upload root directory where index.html, js/, and style.css are located
+          path: '.'
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
