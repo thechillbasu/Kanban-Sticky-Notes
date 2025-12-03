@@ -1,0 +1,177 @@
+/* Form and Input Field Styles
+ * 
+ * Styles for the task creation form at the top of the page.
+ * Includes text input, priority selector, column selector, and submit button.
+ * Features neon-themed borders, focus states, and responsive layout for mobile.
+ */
+
+/* Main form container with neon border */
+#addNoteForm {
+  display: flex;
+  gap: var(--space-lg);
+  margin-bottom: var(--space-2xl);
+  padding: var(--space-xl);
+  background: var(--bg-surface);
+  border-radius: var(--radius-xl);
+  border: 2px solid rgba(0, 240, 255, 0.2);
+  box-shadow: var(--shadow-lg), 0 0 40px rgba(0, 240, 255, 0.1);
+  transition: all var(--transition-base);
+}
+
+/* Enhanced glow when form is focused */
+#addNoteForm:focus-within {
+  border-color: var(--accent-neon-cyan);
+  box-shadow: var(--shadow-lg), var(--glow-soft);
+}
+#noteText {
+  flex: 1;
+  padding: var(--space-lg);
+  font-size: var(--font-size-lg);
+  font-family: var(--font-sans);
+  border: 2px solid rgba(0, 240, 255, 0.3);
+  border-radius: var(--radius-lg);
+  background: var(--bg-input);
+  color: var(--text-primary);
+  outline: none;
+  transition: all var(--transition-base);
+  box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+/* Placeholder text styling */
+#noteText::placeholder {
+  color: var(--text-muted);
+}
+#noteText:focus {
+  border-color: var(--accent-neon-cyan);
+  box-shadow: 0 0 0 3px rgba(0, 240, 255, 0.1);
+}
+#noteText.invalidInput {
+  border-color: var(--color-danger);
+  animation: shake 0.3s ease;
+}
+
+/* Dropdown selectors with custom arrow */
+#prioritySelect,
+#columnSelect {
+  padding: var(--space-lg) var(--space-xl);
+  padding-right: var(--space-2xl);
+  font-size: var(--font-size-base);
+  font-family: var(--font-sans);
+  font-weight: var(--font-weight-medium);
+  border: 2px solid rgba(0, 240, 255, 0.3);
+  border-radius: var(--radius-lg);
+  background: var(--bg-input);
+  color: var(--text-primary);
+  cursor: pointer;
+  outline: none;
+  transition: all var(--transition-base);
+  min-width: 180px;
+  box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.3);
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%2300f0ff' d='M6 9L1 4h10z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right var(--space-md) center;
+}
+#prioritySelect:focus,
+#columnSelect:focus {
+  border-color: var(--accent-neon-cyan);
+  box-shadow: 0 0 0 3px rgba(0, 240, 255, 0.1);
+}
+#addNoteForm button {
+  padding: var(--space-lg) var(--space-2xl);
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-bold);
+  color: var(--text-inverse);
+  background: linear-gradient(135deg, var(--accent-neon-cyan), var(--accent-neon-magenta));
+  border: none;
+  border-radius: var(--radius-lg);
+  cursor: pointer;
+  transition: all var(--transition-base);
+  box-shadow: var(--shadow-lg), 0 0 30px rgba(0, 240, 255, 0.4);
+  position: relative;
+  overflow: hidden;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* Ripple effect on button */
+#addNoteForm button::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.3);
+  transform: translate(-50%, -50%);
+  transition: width 0.6s, height 0.6s;
+}
+
+/* Button hover with lift and glow */
+#addNoteForm button:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg), var(--glow-neon-cyan);
+}
+#addNoteForm button:hover::before {
+  width: 300px;
+  height: 300px;
+}
+#addNoteForm button:active {
+  transform: translateY(0);
+}
+
+/* Shake animation for validation errors */
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-8px); }
+  75% { transform: translateX(8px); }
+}
+@media (max-width: 768px) {
+  #addNoteForm {
+    flex-wrap: wrap;
+    padding: var(--space-lg);
+    gap: var(--space-md);
+  }
+  #noteText {
+    flex: 1 1 100%;
+    padding: var(--space-md);
+    font-size: var(--font-size-base);
+  }
+  #prioritySelect,
+  #columnSelect {
+    flex: 1;
+    min-width: 140px;
+    padding: var(--space-md) var(--space-lg);
+    padding-right: var(--space-xl);
+    font-size: var(--font-size-sm);
+  }
+  #addNoteForm button {
+    flex: 1 1 100%;
+    padding: var(--space-md) var(--space-xl);
+    font-size: var(--font-size-base);
+  }
+}
+@media (max-width: 480px) {
+  #addNoteForm {
+    padding: var(--space-md);
+    gap: var(--space-sm);
+  }
+  #noteText {
+    padding: var(--space-sm) var(--space-md);
+  }
+  #prioritySelect,
+  #columnSelect {
+    flex: 1 1 100%;
+    min-width: auto;
+    padding: var(--space-sm) var(--space-md);
+    padding-right: var(--space-xl);
+  }
+  #addNoteForm button {
+    padding: var(--space-sm) var(--space-lg);
+  }
+}
+body:not(.dark-mode) #prioritySelect,
+body:not(.dark-mode) #columnSelect {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%230969da' d='M6 9L1 4h10z'/%3E%3C/svg%3E");
+}

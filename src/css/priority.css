@@ -1,0 +1,54 @@
+/* Priority Badge Styles
+ * 
+ * Color-coded badges that display task priority levels (High, Medium, Low).
+ * Each priority has unique colors with neon accents and glow effects.
+ * Badges appear on task cards and in modal dialogs with consistent styling.
+ */
+
+/* Base priority badge */
+.priorityBadge {
+  position: absolute;
+  top: 7px;
+  left: 7px;
+  font-size: 9px;
+  font-weight: var(--font-weight-bold);
+  padding: 3px 8px;
+  border-radius: var(--radius-sm);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  transition: all var(--transition-base);
+  backdrop-filter: blur(10px);
+}
+.priority-high {
+  background: var(--priority-high-bg);
+  color: var(--priority-high);
+  border: 1px solid var(--priority-high);
+  box-shadow: 0 0 10px var(--priority-high-glow);
+}
+.priority-high:hover {
+  box-shadow: 0 0 20px var(--priority-high-glow);
+  transform: scale(1.05);
+}
+.priority-medium {
+  background: var(--priority-medium-bg);
+  color: var(--priority-medium);
+  border: 1px solid var(--priority-medium);
+  box-shadow: 0 0 10px var(--priority-medium-glow);
+}
+.priority-medium:hover {
+  box-shadow: 0 0 20px var(--priority-medium-glow);
+  transform: scale(1.05);
+}
+.priority-low {
+  background: var(--priority-low-bg);
+  color: var(--priority-low);
+  border: 1px solid var(--priority-low);
+  box-shadow: 0 0 10px var(--priority-low-glow);
+}
+.priority-low:hover {
+  box-shadow: 0 0 20px var(--priority-low-glow);
+  transform: scale(1.05);
+}

@@ -1,0 +1,118 @@
+<!-- Kanban Sticky Notes Board - Main HTML Structure
+     
+     This is the main HTML file that defines the structure of the kanban board application.
+     It includes the header with live clock and theme toggle, the task creation form,
+     and the three-column board layout (To Do, In Progress, Done). All styling is loaded
+     from modular CSS files, and functionality is provided by JavaScript modules.
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kanban Sticky Notes Board</title>
+
+  <!-- Font Awesome icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- Modular CSS imports -->
+  <link rel="stylesheet" href="../src/css/variables.css">
+  <link rel="stylesheet" href="../src/css/base.css">
+  <link rel="stylesheet" href="../src/css/header.css">
+  <link rel="stylesheet" href="../src/css/form.css">
+  <link rel="stylesheet" href="../src/css/board.css">
+  <link rel="stylesheet" href="../src/css/cards.css">
+  <link rel="stylesheet" href="../src/css/priority.css">
+  <link rel="stylesheet" href="../src/css/modalBase.css">
+  <link rel="stylesheet" href="../src/css/detailsViewerModal.css">
+  <link rel="stylesheet" href="../src/css/detailsEditorModal.css">
+  <link rel="stylesheet" href="../src/css/utilities.css">
+</head>
+<body>
+
+<!-- Header with clock, title, and theme toggle -->
+<header class="app-header">
+  <!-- Live clock display -->
+  <div class="app-header__left">
+    <div class="live-clock" id="clockWidget">
+      <div class="clock-time" id="liveTime">00:00:00</div>
+      <div class="clock-date" id="liveDate">LOADING...</div>
+    </div>
+  </div>
+
+  <!-- App title -->
+  <div class="app-header__center">
+    <h1 class="app-title">
+      <span class="word-kanban">Kanban</span>
+      <span class="word-sticky"> Sticky</span>
+      <span class="word-notes"> Notes</span>
+    </h1>
+    <div class="title-underline"></div>
+    <p class="app-subtitle">Visualize your tasks with drag-and-drop notes</p>
+  </div>
+
+  <!-- Theme toggle button -->
+  <div class="app-header__right">
+    <button id="themeToggle" class="theme-toggle" type="button">
+      <i class="fas fa-moon" aria-hidden="true"></i>
+      <span class="theme-toggle__label">Dark mode</span>
+    </button>
+  </div>
+</header>
+
+<div class="container">
+
+  <!-- Form to add new tasks -->
+  <form id="addNoteForm">
+    <input type="text" id="noteText" placeholder="Enter note text..." required>
+
+    <select id="prioritySelect">
+      <option value="high">High Priority</option>
+      <option value="medium" selected>Medium Priority</option>
+      <option value="low">Low Priority</option>
+    </select>
+
+    <select id="columnSelect">
+      <option value="todo">To Do</option>
+      <option value="inprogress">In Progress</option>
+      <option value="done">Done</option>
+    </select>
+
+    <button type="submit">Add Note</button>
+  </form>
+
+  <!-- Kanban board with three columns -->
+  <div class="board">
+
+    <div class="boardColumn" id="todo">
+      <h2>To Do</h2>
+      <div class="notesContainer"></div>
+    </div>
+
+    <div class="boardColumn" id="inprogress">
+      <h2>In Progress</h2>
+      <div class="notesContainer"></div>
+    </div>
+
+    <div class="boardColumn" id="done">
+      <h2>Done</h2>
+      <div class="notesContainer"></div>
+    </div>
+
+  </div>
+
+  <!-- Empty state message -->
+  <div id="emptyState" class="emptyState">
+    <p>Your board is empty. Add your first note!</p>
+  </div>
+
+</div>
+
+<!-- JavaScript modules -->
+<script src="../src/js/storage.js"></script>
+<script src="../src/js/dragDrop.js"></script>
+<script src="../src/js/theme.js"></script>
+<script src="../src/js/liveCapsule.js"></script>
+<script type="module" src="../src/js/main.js"></script>
+</body>
+</html>

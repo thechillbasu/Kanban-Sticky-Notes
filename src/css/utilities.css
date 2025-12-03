@@ -1,0 +1,85 @@
+/* Utility Classes and Helper Styles
+ * 
+ * Reusable utility classes and special-purpose styles including the empty state
+ * message, storage warnings, and other helper classes used throughout the app.
+ */
+
+/* Empty board message */
+.emptyState {
+  text-align: center;
+  padding: var(--space-2xl) var(--space-xl);
+  background: linear-gradient(135deg, rgba(0, 240, 255, 0.05), rgba(157, 0, 255, 0.05));
+  border-radius: var(--radius-xl);
+  border: 3px dashed rgba(0, 240, 255, 0.3);
+  box-shadow: var(--shadow-lg), inset 0 0 60px rgba(0, 240, 255, 0.05);
+  transition: all var(--transition-base);
+  animation: gentlePulse 3s ease-in-out infinite;
+}
+@keyframes gentlePulse {
+  0%, 100% { 
+    border-color: rgba(0, 240, 255, 0.3);
+    box-shadow: var(--shadow-lg), inset 0 0 60px rgba(0, 240, 255, 0.05);
+  }
+  50% { 
+    border-color: rgba(157, 0, 255, 0.3);
+    box-shadow: var(--shadow-lg), inset 0 0 60px rgba(157, 0, 255, 0.05);
+  }
+}
+.emptyState p {
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-medium);
+  color: var(--text-primary);
+  margin: 0;
+  background: linear-gradient(135deg, var(--accent-neon-cyan), var(--accent-neon-magenta));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.storageWarning {
+  border-radius: var(--radius-md);
+  padding: var(--space-md) var(--space-lg);
+  margin-bottom: var(--space-lg);
+  background: rgba(245, 158, 11, 0.1);
+  border: 1px solid var(--color-warning);
+  box-shadow: 0 0 20px rgba(245, 158, 11, 0.2);
+}
+.storageWarning p {
+  margin: 0;
+  font-size: var(--font-size-sm);
+  color: var(--color-warning);
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  font-weight: var(--font-weight-medium);
+}
+.storageWarning i {
+  font-size: var(--font-size-lg);
+}
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+.loading {
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+*:focus-visible {
+  outline: 2px solid var(--accent-neon-cyan);
+  outline-offset: 2px;
+}
+::selection {
+  background: rgba(0, 240, 255, 0.3);
+  color: var(--text-primary);
+}
+::-moz-selection {
+  background: rgba(0, 240, 255, 0.3);
+  color: var(--text-primary);
+}
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

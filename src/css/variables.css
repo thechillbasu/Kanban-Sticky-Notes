@@ -1,0 +1,252 @@
+/* CSS custom properties - Design tokens for the entire app */
+
+:root {
+  /* Background colors for dark mode */
+  --bg-page: #050810;
+  --bg-surface: #0d1117;
+  --bg-column: #161b22;
+  --bg-card: #1c2128;
+  --bg-card-hover: #22272e;
+  --bg-input: #0d1117;
+  --bg-elevated: #1c2128;
+  
+  /* Text colors */
+  --text-primary: #e8eaf0;
+  --text-secondary: #a0a8c0;
+  --text-muted: #6b7280;
+  --text-inverse: #0a0e1a;
+  
+  /* Neon accent colors */
+  --accent-neon-cyan: #00f0ff;
+  --accent-neon-magenta: #ff00ff;
+  --accent-neon-lime: #ccff00;
+  --accent-neon-violet: #9d00ff;
+  --accent-neon-orange: #ff6b00;
+  
+  /* Priority colors */
+  --priority-high: #ff0055;
+  --priority-high-bg: rgba(255, 0, 85, 0.1);
+  --priority-high-glow: rgba(255, 0, 85, 0.3);
+  --priority-medium: #ff6b00;
+  --priority-medium-bg: rgba(255, 107, 0, 0.1);
+  --priority-medium-glow: rgba(255, 107, 0, 0.3);
+  --priority-low: #00e5cc;
+  --priority-low-bg: rgba(0, 229, 204, 0.1);
+  --priority-low-glow: rgba(0, 229, 204, 0.3);
+  
+  /* Status colors for columns */
+  --status-todo: #00f0ff;
+  --status-todo-glow: rgba(0, 240, 255, 0.2);
+  --status-inprogress: #ccff00;
+  --status-inprogress-glow: rgba(204, 255, 0, 0.2);
+  --status-done: #9d00ff;
+  --status-done-glow: rgba(157, 0, 255, 0.2);
+  
+  /* Semantic colors */
+  --color-success: #10b981;
+  --color-warning: #f59e0b;
+  --color-danger: #ef4444;
+  --color-info: #3b82f6;
+  
+  /* Shadow levels */
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.4);
+  --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.5);
+  --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.6);
+  --shadow-xl: 0 16px 48px rgba(0, 0, 0, 0.7);
+  
+  /* Glow effects */
+  --glow-neon-cyan: 0 0 20px rgba(0, 240, 255, 0.4);
+  --glow-neon-magenta: 0 0 20px rgba(255, 0, 255, 0.4);
+  --glow-neon-lime: 0 0 20px rgba(204, 255, 0, 0.4);
+  --glow-soft: 0 0 30px rgba(0, 240, 255, 0.15);
+  
+  /* Border radius */
+  --radius-sm: 6px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+  
+  /* Spacing scale */
+  --space-xs: 4px;
+  --space-sm: 8px;
+  --space-md: 16px;
+  --space-lg: 24px;
+  --space-xl: 32px;
+  --space-2xl: 48px;
+  
+  /* Transitions */
+  --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-base: 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-slow: 350ms cubic-bezier(0.4, 0, 0.2, 1);
+  
+  /* Typography */
+  --font-sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Inter', 'Roboto', sans-serif;
+  --font-mono: 'SF Mono', 'Monaco', 'Cascadia Code', 'Courier New', monospace;
+  
+  /* Font sizes */
+  --font-size-xs: 0.75rem;
+  --font-size-sm: 0.875rem;
+  --font-size-base: 1rem;
+  --font-size-lg: 1.125rem;
+  --font-size-xl: 1.25rem;
+  --font-size-2xl: 1.5rem;
+  --font-size-3xl: 2rem;
+  
+  /* Font weights */
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+  
+  /* Line heights */
+  --line-height-tight: 1.25;
+  --line-height-normal: 1.5;
+  --line-height-relaxed: 1.75;
+}
+
+/* Light mode color overrides */
+body:not(.dark-mode) {
+  --bg-page: #fafbfc;
+  --bg-surface: #ffffff;
+  --bg-column: #f6f8fa;
+  --bg-card: #ffffff;
+  --bg-card-hover: #f0f6ff;
+  --bg-input: #ffffff;
+  --bg-elevated: #ffffff;
+  
+  --text-primary: #0d1117;
+  --text-secondary: #57606a;
+  --text-muted: #8b949e;
+  --text-inverse: #ffffff;
+  
+  --accent-neon-cyan: #0969da;
+  --accent-neon-magenta: #bf3989;
+  --accent-neon-lime: #1a7f37;
+  --accent-neon-violet: #8250df;
+  --accent-neon-orange: #bc4c00;
+  
+  --priority-high: #d1004b;
+  --priority-high-bg: #ffe5f0;
+  --priority-high-glow: rgba(209, 0, 75, 0.2);
+  --priority-medium: #fb8500;
+  --priority-medium-bg: #fff8dc;
+  --priority-medium-glow: rgba(251, 133, 0, 0.2);
+  --priority-low: #00b8a9;
+  --priority-low-bg: #e0f7f5;
+  --priority-low-glow: rgba(0, 184, 169, 0.2);
+  
+  --status-todo: #0969da;
+  --status-todo-glow: rgba(9, 105, 218, 0.15);
+  --status-inprogress: #1a7f37;
+  --status-inprogress-glow: rgba(26, 127, 55, 0.15);
+  --status-done: #8250df;
+  --status-done-glow: rgba(130, 80, 223, 0.15);
+  
+  --shadow-sm: 0 2px 8px rgba(31, 35, 40, 0.12);
+  --shadow-md: 0 4px 16px rgba(31, 35, 40, 0.15);
+  --shadow-lg: 0 8px 32px rgba(31, 35, 40, 0.18);
+  --shadow-xl: 0 16px 48px rgba(31, 35, 40, 0.22);
+  
+  --glow-neon-cyan: 0 0 20px rgba(9, 105, 218, 0.3);
+  --glow-neon-magenta: 0 0 20px rgba(191, 57, 137, 0.3);
+  --glow-neon-lime: 0 0 20px rgba(26, 127, 55, 0.3);
+  --glow-soft: 0 0 30px rgba(9, 105, 218, 0.15);
+}
+
+/* Light mode background gradient */
+body:not(.dark-mode) {
+  background: linear-gradient(135deg, #fafbfc 0%, #f0f6ff 50%, #fff8dc 100%);
+}
+
+/* Light mode background pattern */
+body:not(.dark-mode)::before {
+  background-image: 
+    radial-gradient(circle at 20% 50%, rgba(9, 105, 218, 0.06) 0%, transparent 50%),
+    radial-gradient(circle at 80% 80%, rgba(130, 80, 223, 0.06) 0%, transparent 50%),
+    radial-gradient(circle at 40% 20%, rgba(26, 127, 55, 0.04) 0%, transparent 50%);
+}
+
+/* Light mode title styling */
+body:not(.dark-mode) .app-title {
+  background: linear-gradient(135deg, #0969da, #bf3989);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-shadow: none;
+}
+
+/* Light mode column styling */
+body:not(.dark-mode) .boardColumn {
+  border: 2px solid rgba(31, 35, 40, 0.15);
+  box-shadow: var(--shadow-md), inset 0 1px 0 rgba(255, 255, 255, 0.8);
+}
+
+/* Light mode card styling */
+body:not(.dark-mode) .stickyNote {
+  border: 2px solid rgba(31, 35, 40, 0.12);
+  box-shadow: var(--shadow-sm), inset 0 1px 0 rgba(255, 255, 255, 0.8);
+}
+
+body:not(.dark-mode) .stickyNote:hover {
+  box-shadow: var(--shadow-md), inset 0 1px 0 rgba(255, 255, 255, 0.8);
+}
+
+/* Light mode form styling */
+body:not(.dark-mode) #addNoteForm {
+  border: 2px solid rgba(9, 105, 218, 0.3);
+  box-shadow: var(--shadow-md), 0 0 40px rgba(9, 105, 218, 0.08);
+}
+
+/* Light mode input styling */
+body:not(.dark-mode) #noteText,
+body:not(.dark-mode) #prioritySelect,
+body:not(.dark-mode) #columnSelect {
+  border: 2px solid rgba(9, 105, 218, 0.25);
+  box-shadow: inset 0 2px 4px rgba(31, 35, 40, 0.06);
+}
+
+body:not(.dark-mode) #noteText:focus,
+body:not(.dark-mode) #prioritySelect:focus,
+body:not(.dark-mode) #columnSelect:focus {
+  border-color: #0969da;
+  box-shadow: 0 0 0 3px rgba(9, 105, 218, 0.15);
+}
+
+/* Light mode column headers */
+body:not(.dark-mode) .boardColumn h2 {
+  text-shadow: none;
+}
+
+/* Light mode empty state */
+body:not(.dark-mode) .emptyState {
+  background: linear-gradient(135deg, rgba(9, 105, 218, 0.08), rgba(130, 80, 223, 0.08));
+  border: 3px dashed rgba(9, 105, 218, 0.4);
+  box-shadow: var(--shadow-md), inset 0 0 60px rgba(9, 105, 218, 0.05);
+}
+
+body:not(.dark-mode) .emptyState p {
+  background: linear-gradient(135deg, #0969da, #bf3989);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Light mode header */
+body:not(.dark-mode) .app-header {
+  background: rgba(255, 255, 255, 0.9);
+  border-bottom: 1px solid rgba(31, 35, 40, 0.15);
+  box-shadow: 0 4px 24px rgba(31, 35, 40, 0.08);
+}
+
+/* Light mode theme toggle */
+body:not(.dark-mode) .theme-toggle {
+  border: 1px solid rgba(31, 35, 40, 0.15);
+  background: var(--bg-elevated);
+  color: var(--text-primary);
+}
+
+body:not(.dark-mode) .theme-toggle:hover {
+  border-color: #0969da;
+  background: #f0f6ff;
+  box-shadow: 0 0 20px rgba(9, 105, 218, 0.2);
+}

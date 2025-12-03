@@ -1,0 +1,123 @@
+/* Base Modal Styles
+ * 
+ * Shared styling for all modal dialogs in the application.
+ * Includes backdrop overlay, modal container, header, body, footer sections,
+ * and close button. Provides consistent appearance and animations for both
+ * the task editor modal and task details viewer modal.
+ */
+
+/* Modal backdrop overlay */
+.taskModal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(10, 14, 26, 0.85);
+  backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+  animation: fadeIn var(--transition-base);
+}
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+.modalContent {
+  background: var(--bg-surface);
+  border-radius: var(--radius-lg);
+  width: 90%;
+  max-width: 600px;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: var(--shadow-xl), 0 0 60px rgba(0, 240, 255, 0.2);
+  border: 1px solid rgba(0, 240, 255, 0.2);
+  animation: slideUp var(--transition-base);
+}
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+.modalHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--space-lg) var(--space-xl);
+  border-bottom: 1px solid rgba(160, 168, 192, 0.1);
+  background: linear-gradient(135deg, rgba(0, 240, 255, 0.05), rgba(157, 0, 255, 0.05));
+}
+.modalHeader h2 {
+  margin: 0;
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-semibold);
+  color: var(--text-primary);
+}
+.modalClose {
+  background: none;
+  border: none;
+  font-size: 28px;
+  color: var(--text-muted);
+  cursor: pointer;
+  padding: 0;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-sm);
+  transition: all var(--transition-fast);
+}
+.modalClose:hover {
+  background: rgba(239, 68, 68, 0.1);
+  color: var(--color-danger);
+  transform: rotate(90deg);
+}
+.modalBody {
+  padding: var(--space-xl);
+}
+.modalFooter {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--space-md);
+  padding: var(--space-lg) var(--space-xl);
+  border-top: 1px solid rgba(160, 168, 192, 0.1);
+  background: rgba(19, 24, 36, 0.5);
+}
+body:not(.dark-mode) .modalFooter {
+  background: rgba(246, 248, 250, 0.8);
+  border-top: 1px solid rgba(31, 35, 40, 0.15);
+}
+.modalFooter button {
+  padding: var(--space-sm) var(--space-lg);
+  border: none;
+  border-radius: var(--radius-md);
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-semibold);
+  cursor: pointer;
+  transition: all var(--transition-base);
+}
+@media (max-width: 480px) {
+  .modalContent {
+    width: 95%;
+    max-height: 95vh;
+  }
+  .modalHeader,
+  .modalBody,
+  .modalFooter {
+    padding: var(--space-md);
+  }
+  .modalFooter {
+    flex-direction: column;
+  }
+  .modalFooter button {
+    width: 100%;
+  }
+}

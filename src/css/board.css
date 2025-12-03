@@ -1,0 +1,160 @@
+/* Kanban Board Layout and Column Styles
+ * 
+ * This file defines the 3-column kanban board layout using CSS Grid.
+ * Each column (To Do, In Progress, Done) has unique styling with color-coded
+ * borders and gradient overlays. Includes drag-and-drop visual feedback and
+ * responsive breakpoints for mobile/tablet views.
+ */
+
+/* Main board container with 3-column grid */
+.board {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-2xl);
+  margin-bottom: var(--space-xl);
+  padding: var(--space-md);
+}
+
+/* Individual column styling with glassmorphism effect */
+.boardColumn {
+  background: var(--bg-column);
+  border-radius: var(--radius-xl);
+  padding: var(--space-xl);
+  min-height: 500px;
+  border: 2px solid rgba(160, 168, 192, 0.15);
+  box-shadow: var(--shadow-lg), inset 0 1px 0 rgba(255, 255, 255, 0.03);
+  transition: all var(--transition-base);
+  position: relative;
+  backdrop-filter: blur(10px);
+}
+
+/* Gradient overlay for each column */
+.boardColumn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: var(--radius-xl);
+  opacity: 0.03;
+  pointer-events: none;
+  transition: all var(--transition-base);
+}
+
+/* To Do column - cyan accent */
+.boardColumn#todo {
+  border-left: 4px solid var(--status-todo);
+}
+.boardColumn#todo::before {
+  background: linear-gradient(135deg, var(--status-todo), transparent);
+}
+
+/* In Progress column - lime accent */
+.boardColumn#inprogress {
+  border-left: 4px solid var(--status-inprogress);
+}
+.boardColumn#inprogress::before {
+  background: linear-gradient(135deg, var(--status-inprogress), transparent);
+}
+
+/* Done column - violet accent */
+.boardColumn#done {
+  border-left: 4px solid var(--status-done);
+}
+.boardColumn#done::before {
+  background: linear-gradient(135deg, var(--status-done), transparent);
+}
+
+/* Column headers with centered text and glow effect */
+.boardColumn h2 {
+  font-size: var(--font-size-2xl);
+  font-weight: var(--font-weight-bold);
+  margin-bottom: var(--space-xl);
+  padding-bottom: var(--space-lg);
+  border-bottom: 3px solid rgba(160, 168, 192, 0.2);
+  color: var(--text-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-sm);
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  text-shadow: 0 0 20px currentColor;
+}
+
+/* Color-coded column headers */
+.boardColumn#todo h2 {
+  color: var(--status-todo);
+}
+.boardColumn#inprogress h2 {
+  color: var(--status-inprogress);
+}
+.boardColumn#done h2 {
+  color: var(--status-done);
+}
+
+/* Container for task cards within each column */
+.notesContainer {
+  min-height: 400px;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
+/* Visual feedback when dragging a card over a column */
+.boardColumn.dropTarget {
+  border-color: var(--accent-neon-cyan);
+  background: rgba(0, 240, 255, 0.05);
+  box-shadow: var(--shadow-lg), inset 0 0 30px rgba(0, 240, 255, 0.1);
+  transform: scale(1.02);
+}
+.boardColumn.dropTarget::before {
+  height: 4px;
+  box-shadow: 0 0 20px currentColor;
+}
+
+/* Tablet view - stack columns vertically */
+@media (max-width: 1024px) {
+  .board {
+    grid-template-columns: 1fr;
+  }
+  .boardColumn {
+    min-height: 300px;
+  }
+}
+
+/* Mobile view - reduced spacing */
+@media (max-width: 768px) {
+  .board {
+    gap: var(--space-lg);
+    padding: var(--space-sm);
+  }
+  .boardColumn {
+    padding: var(--space-lg);
+  }
+  .boardColumn h2 {
+    font-size: var(--font-size-lg);
+  }
+}
+
+/* Small mobile view - compact layout */
+@media (max-width: 480px) {
+  .board {
+    gap: var(--space-md);
+    padding: 0;
+  }
+  .boardColumn {
+    padding: var(--space-md);
+    min-height: 300px;
+  }
+  .boardColumn h2 {
+    font-size: var(--font-size-base);
+    margin-bottom: var(--space-md);
+    padding-bottom: var(--space-sm);
+  }
+  .notesContainer {
+    min-height: 250px;
+    gap: var(--space-sm);
+  }
+}

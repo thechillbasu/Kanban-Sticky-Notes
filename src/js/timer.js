@@ -1,19 +1,18 @@
-/**
- * TimerManager class for tracking time spent on in-progress notes
- */
+// Time Tracking System
+// 
+// Manages time tracking for tasks in the "In Progress" column. The TimerManager class
+// tracks multiple active timers simultaneously, calculates elapsed time, and provides
+// formatting functions. Supports accumulative time tracking across multiple sessions
+// (time persists when moving tasks back to In Progress). Updates timer displays every second.
+
+// Timer manager class for tracking multiple task timers
 export class TimerManager {
   constructor() {
-    // Store active timers: Map<noteId, startTime>
-    this.activeTimers = new Map();
-    // Interval ID for the update loop
-    this.updateIntervalId = null;
+    this.activeTimers = new Map(); // Map of noteId -> startTime
+    this.updateIntervalId = null; // Interval ID for update loop
   }
 
-  /**
-   * Start a timer for a note
-   * @param {number} noteId - The ID of the note
-   * @param {number} startedAt - The timestamp when the note was started
-   */
+  // Start tracking time for a task
   startTimer(noteId, startedAt) {
     if (!noteId || !startedAt) {
       console.error('Invalid noteId or startedAt provided to startTimer');
@@ -23,11 +22,7 @@ export class TimerManager {
     this.activeTimers.set(noteId, startedAt);
   }
 
-  /**
-   * Stop a timer for a note and return the elapsed time
-   * @param {number} noteId - The ID of the note
-   * @returns {number} - The elapsed time in milliseconds
-   */
+  // Stop timer and return elapsed time
   stopTimer(noteId) {
     if (!this.activeTimers.has(noteId)) {
       return 0;
@@ -41,12 +36,7 @@ export class TimerManager {
     return elapsedTime;
   }
 
-  /**
-   * Get the elapsed time for a note
-   * @param {number} noteId - The ID of the note
-   * @param {number} currentTime - Optional current time (defaults to Date.now())
-   * @returns {number} - The elapsed time in milliseconds
-   */
+  // Get current elapsed time for a task
   getElapsedTime(noteId, currentTime = Date.now()) {
     if (!this.activeTimers.has(noteId)) {
       return 0;
@@ -56,50 +46,43 @@ export class TimerManager {
     return currentTime - startedAt;
   }
 
-  /**
-   * Check if a timer is active for a note
-   * @param {number} noteId - The ID of the note
-   * @returns {boolean}
-   */
+  // Get the start time for a timer
+  getTimerStartTime(noteId) {
+    if (!this.activeTimers.has(noteId)) {
+      return Date.now();
+    }
+    return this.activeTimers.get(noteId);
+  }
+
+  // Check if a timer is running for a task
   isTimerActive(noteId) {
     return this.activeTimers.has(noteId);
   }
 
-  /**
-   * Get all active timer IDs
-   * @returns {Array<number>}
-   */
+  // Get all active timer IDs
   getActiveTimerIds() {
     return Array.from(this.activeTimers.keys());
   }
 
-  /**
-   * Clear all timers
-   */
+  // Clear all active timers
   clearAllTimers() {
     this.activeTimers.clear();
   }
 
-  /**
-   * Start the update loop that calls the provided callback every second
-   * @param {Function} updateCallback - Function to call on each update
-   */
+  // Start the update loop that calls callback every second
   startUpdateLoop(updateCallback) {
     if (this.updateIntervalId) {
-      // Already running
-      return;
+      return; // Already running
     }
     
     this.updateIntervalId = setInterval(() => {
       if (typeof updateCallback === 'function') {
         updateCallback();
       }
-    }, 1000); // Update every second
+    }, 1000);
   }
 
-  /**
-   * Stop the update loop
-   */
+  // Stop the update loop
   stopUpdateLoop() {
     if (this.updateIntervalId) {
       clearInterval(this.updateIntervalId);
@@ -107,27 +90,18 @@ export class TimerManager {
     }
   }
 
-  /**
-   * Pause all timers (for page visibility changes)
-   */
+  // Pause all timers
   pauseAllTimers() {
     this.stopUpdateLoop();
   }
 
-  /**
-   * Resume all timers (for page visibility changes)
-   * @param {Function} updateCallback - Function to call on each update
-   */
+  // Resume all timers
   resumeAllTimers(updateCallback) {
     this.startUpdateLoop(updateCallback);
   }
 }
 
-/**
- * Format elapsed time in milliseconds to HH:MM:SS format
- * @param {number} milliseconds - Time in milliseconds
- * @returns {string} - Formatted time string (HH:MM:SS)
- */
+// Format milliseconds to HH:MM:SS format
 export function formatElapsedTime(milliseconds) {
   if (milliseconds < 0) {
     return '00:00:00';
@@ -138,7 +112,6 @@ export function formatElapsedTime(milliseconds) {
   const minutes = Math.floor((totalSeconds % 3600) / 60);
   const seconds = totalSeconds % 60;
   
-  // Pad with zeros
   const hh = String(hours).padStart(2, '0');
   const mm = String(minutes).padStart(2, '0');
   const ss = String(seconds).padStart(2, '0');
@@ -146,13 +119,8 @@ export function formatElapsedTime(milliseconds) {
   return `${hh}:${mm}:${ss}`;
 }
 
-/**
- * Format time spent for completed tasks in the Done column
- * @param {number} milliseconds - Time in milliseconds
- * @returns {string} - Formatted time string for Done column
- */
+// Format time in human-readable format for completed tasks
 export function formatCompletedTime(milliseconds) {
-  // Handle zero or invalid time
   if (!milliseconds || milliseconds <= 0) {
     return 'No time tracked';
   }
@@ -162,7 +130,6 @@ export function formatCompletedTime(milliseconds) {
   const minutes = Math.floor((totalSeconds % 3600) / 60);
   const seconds = totalSeconds % 60;
   
-  // Build readable format
   const parts = [];
   
   if (hours > 0) {

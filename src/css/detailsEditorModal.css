@@ -1,0 +1,335 @@
+/* Task Editor Modal Styles
+ * 
+ * Modal for creating and editing tasks with form fields for task name,
+ * description, priority, and due date. Features a custom date/time picker
+ * with animated popup, bouncy transitions, and clear visual feedback.
+ * Includes validation states and responsive design for mobile devices.
+ */
+
+/* Form field container */
+.formGroup {
+  margin-bottom: var(--space-lg);
+}
+.formGroup label {
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+  margin-bottom: var(--space-sm);
+  font-weight: var(--font-weight-semibold);
+  color: var(--text-primary);
+  font-size: var(--font-size-sm);
+}
+.formGroup label i {
+  color: var(--accent-neon-cyan);
+  font-size: var(--font-size-base);
+}
+.formGroup input[type="text"],
+.formGroup input[type="datetime-local"],
+.formGroup textarea,
+.formGroup select {
+  width: 100%;
+  padding: var(--space-md) var(--space-lg);
+  border: 2px solid rgba(160, 168, 192, 0.2);
+  border-radius: var(--radius-md);
+  font-size: var(--font-size-base);
+  font-family: var(--font-sans);
+  background: var(--bg-input);
+  color: var(--text-primary);
+  transition: all var(--transition-base);
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+.formGroup select {
+  padding-right: var(--space-2xl);
+  appearance: none;
+  cursor: pointer;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%2300f0ff' d='M6 9L1 4h10z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right var(--space-md) center;
+  background-size: 12px;
+}
+body:not(.dark-mode) .formGroup select {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%230969da' d='M6 9L1 4h10z'/%3E%3C/svg%3E");
+}
+.formGroup input[type="text"]:focus,
+.formGroup input[type="datetime-local"]:focus,
+.formGroup textarea:focus,
+.formGroup select:focus {
+  outline: none;
+  border-color: var(--accent-neon-cyan);
+  box-shadow: 0 0 0 3px rgba(0, 240, 255, 0.1), var(--glow-soft);
+}
+.formGroup textarea {
+  resize: vertical;
+  min-height: 120px;
+  line-height: var(--line-height-relaxed);
+}
+.formGroup input.invalidInput {
+  border-color: var(--color-danger);
+  animation: shake 0.3s ease;
+}
+.lastEdited {
+  margin-top: var(--space-md);
+  padding: var(--space-md);
+  background: rgba(0, 240, 255, 0.05);
+  border-left: 3px solid var(--accent-neon-cyan);
+  border-radius: var(--radius-sm);
+  font-size: var(--font-size-sm);
+  color: var(--text-secondary);
+  font-style: italic;
+}
+.btnCancel {
+  background: var(--bg-elevated);
+  color: var(--text-primary);
+  border: 1px solid rgba(160, 168, 192, 0.2);
+}
+.btnCancel:hover {
+  background: var(--bg-card-hover);
+  border-color: var(--text-secondary);
+  transform: translateY(-2px);
+}
+.btnSave {
+  background: linear-gradient(135deg, var(--accent-neon-cyan), var(--accent-neon-magenta));
+  color: var(--text-inverse);
+  box-shadow: var(--shadow-md);
+}
+.btnSave:hover {
+  box-shadow: var(--shadow-lg), var(--glow-neon-cyan);
+  transform: translateY(-2px);
+}
+.dueDateGroup {
+  background: linear-gradient(135deg, rgba(0, 240, 255, 0.08), rgba(157, 0, 255, 0.08));
+  padding: var(--space-xl);
+  border-radius: var(--radius-lg);
+  border: 2px solid rgba(0, 240, 255, 0.3);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05), 0 4px 12px rgba(0, 240, 255, 0.15);
+  margin-top: var(--space-md);
+}
+.dueDateGroup label {
+  font-size: var(--font-size-base);
+  margin-bottom: var(--space-md);
+}
+body:not(.dark-mode) .dueDateGroup {
+  background: linear-gradient(135deg, rgba(9, 105, 218, 0.08), rgba(130, 80, 223, 0.08));
+  border-color: rgba(9, 105, 218, 0.3);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.8), 0 4px 12px rgba(9, 105, 218, 0.15);
+}
+.dueDateInputWrapper {
+  position: relative;
+}
+.dueDateDisplay {
+  width: 100%;
+  padding: var(--space-md) var(--space-lg);
+  border: 2px solid rgba(160, 168, 192, 0.2);
+  border-radius: var(--radius-md);
+  font-size: var(--font-size-base);
+  font-family: var(--font-mono);
+  font-weight: var(--font-weight-semibold);
+  background: var(--bg-elevated);
+  color: var(--text-muted);
+  transition: all var(--transition-base);
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+  cursor: default;
+  margin-bottom: var(--space-md);
+  text-align: center;
+}
+.dueDateDisplay.hasValue {
+  color: var(--accent-neon-cyan);
+  border-color: rgba(0, 240, 255, 0.3);
+  background: linear-gradient(135deg, rgba(0, 240, 255, 0.08), rgba(157, 0, 255, 0.08));
+}
+.dueDateDisplay::placeholder {
+  color: var(--text-muted);
+  opacity: 0.5;
+  font-style: italic;
+}
+.btnSelectDateTime {
+  width: 100%;
+  margin-top: var(--space-md);
+  padding: var(--space-md) var(--space-lg);
+  background: linear-gradient(135deg, rgba(0, 240, 255, 0.15), rgba(157, 0, 255, 0.15));
+  border: 2px solid rgba(0, 240, 255, 0.4);
+  border-radius: var(--radius-md);
+  color: var(--text-primary);
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-semibold);
+  cursor: pointer;
+  transition: all var(--transition-base);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-sm);
+}
+.btnSelectDateTime:hover {
+  background: linear-gradient(135deg, rgba(0, 240, 255, 0.25), rgba(157, 0, 255, 0.25));
+  border-color: var(--accent-neon-cyan);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 240, 255, 0.3);
+}
+.btnSelectDateTime i {
+  font-size: var(--font-size-lg);
+}
+.dateTimePickerPopup {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  margin-top: var(--space-md);
+  background: var(--bg-surface);
+  border: 2px solid rgba(0, 240, 255, 0.3);
+  border-radius: var(--radius-lg);
+  padding: var(--space-xl);
+  box-shadow: 
+    var(--shadow-xl), 
+    0 0 20px rgba(0, 240, 255, 0.15),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  z-index: 2500;
+  opacity: 0;
+  transform: translateY(-20px) scale(0.95);
+  transition: all var(--transition-base);
+  pointer-events: none;
+}
+.dateTimePickerPopup.active {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  pointer-events: all;
+  animation: popIn 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+@keyframes popIn {
+  0% {
+    opacity: 0;
+    transform: translateY(-20px) scale(0.9);
+  }
+  50% {
+    transform: translateY(5px) scale(1.02);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+.dateTimePicker {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+.pickerLabel {
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-semibold);
+  color: var(--text-primary);
+  margin-bottom: var(--space-xs);
+}
+.dateInput,
+.timeInput {
+  padding: var(--space-md) var(--space-lg);
+  border: 2px solid rgba(0, 240, 255, 0.3);
+  border-radius: var(--radius-md);
+  background: var(--bg-input);
+  color: var(--text-primary);
+  font-family: var(--font-mono);
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-semibold);
+  cursor: pointer;
+  transition: all var(--transition-base);
+  width: 100%;
+}
+.dateInput:hover,
+.timeInput:hover {
+  border-color: var(--accent-neon-cyan);
+  background: var(--bg-elevated);
+  box-shadow: 0 0 0 3px rgba(0, 240, 255, 0.1);
+}
+.dateInput:focus,
+.timeInput:focus {
+  outline: none;
+  border-color: var(--accent-neon-cyan);
+  box-shadow: 0 0 0 3px rgba(0, 240, 255, 0.1);
+}
+.dateInput::-webkit-calendar-picker-indicator,
+.timeInput::-webkit-calendar-picker-indicator {
+  filter: invert(0.7);
+  cursor: pointer;
+  padding: var(--space-xs);
+  border-radius: var(--radius-sm);
+  transition: all var(--transition-fast);
+}
+.dateInput::-webkit-calendar-picker-indicator:hover,
+.timeInput::-webkit-calendar-picker-indicator:hover {
+  background: rgba(0, 240, 255, 0.2);
+  transform: scale(1.1);
+}
+.btnDonePicker {
+  padding: var(--space-md) var(--space-lg);
+  background: linear-gradient(135deg, var(--accent-neon-cyan), var(--accent-neon-magenta));
+  border: none;
+  border-radius: var(--radius-md);
+  color: var(--text-inverse);
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-bold);
+  cursor: pointer;
+  transition: all var(--transition-base);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-sm);
+  box-shadow: var(--shadow-md);
+}
+.btnDonePicker:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg), var(--glow-neon-cyan);
+}
+.btnDonePicker i {
+  font-size: var(--font-size-lg);
+}
+.dueDateHint {
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+  margin-top: var(--space-md);
+  padding: var(--space-sm) var(--space-md);
+  font-size: var(--font-size-xs);
+  color: var(--text-muted);
+  font-style: italic;
+  background: rgba(0, 240, 255, 0.05);
+  border-radius: var(--radius-sm);
+  border-left: 3px solid rgba(0, 240, 255, 0.3);
+}
+.dueDateHint i {
+  color: var(--accent-neon-cyan);
+  opacity: 0.8;
+  font-size: var(--font-size-sm);
+}
+.btnClearDueDate {
+  margin-top: var(--space-md);
+  padding: var(--space-sm) var(--space-md);
+  background: rgba(239, 68, 68, 0.08);
+  color: var(--color-danger);
+  border: 1px solid rgba(239, 68, 68, 0.3);
+  border-radius: var(--radius-md);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-xs);
+  width: 100%;
+  justify-content: center;
+}
+.btnClearDueDate i {
+  font-size: var(--font-size-base);
+}
+.btnClearDueDate:hover {
+  background: rgba(239, 68, 68, 0.15);
+  border-color: var(--color-danger);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(239, 68, 68, 0.2);
+}
+#modalTaskDueDate {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  position: absolute !important;
+  pointer-events: none !important;
+  width: 0 !important;
+  height: 0 !important;
+}
