@@ -1,11 +1,33 @@
 {
   "name": "kanban-sticky-notes",
   "version": "3.0.0",
-  "description": "Kanban Sticky Notes Board with priority sorting, timer tracking, and enhanced timestamps",
+  "description": "A modern, feature-rich task management application with drag-and-drop Kanban board, time tracking, Google Calendar integration, and dark/light theme support",
   "type": "module",
+  "main": "index.html",
   "scripts": {
+    "start": "python3 -m http.server 8000",
+    "serve": "python3 -m http.server 8000",
     "test": "vitest --run"
   },
+  "keywords": [
+    "kanban",
+    "task-management",
+    "productivity",
+    "todo",
+    "project-management",
+    "drag-and-drop",
+    "time-tracking",
+    "google-calendar",
+    "localstorage",
+    "vanilla-javascript"
+  ],
+  "author": "",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/thechillbasu/Kanban-Sticky-Notes"
+  },
+  "homepage": "https://thechillbasu.github.io/Kanban-Sticky-Notes/",
   "devDependencies": {
     "vitest": "^1.0.0",
     "fast-check": "^3.15.0",
