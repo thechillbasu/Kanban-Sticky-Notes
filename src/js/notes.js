@@ -33,7 +33,8 @@ export function addNote(text, column, priority = 'medium', description = '', due
     startedAt: column === 'inprogress' ? now : null, // Track when task starts
     completedAt: column === 'done' ? now : null, // Set completedAt if adding directly to Done
     timeSpent: 0, // Accumulated time in milliseconds
-    timerStartTime: column === 'inprogress' ? now : null // Store actual timer start time
+    timerStartTime: column === 'inprogress' ? now : null, // Store actual timer start time
+    inProgressSince: column === 'inprogress' ? now : null // Track when current In Progress session started
   };
   
   notes.push(newNote);

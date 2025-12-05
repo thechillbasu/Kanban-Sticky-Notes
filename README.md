@@ -22,6 +22,7 @@ A modern, feature-rich task management application built with vanilla HTML, CSS,
 ### Time Tracking
 - Automatic timer for tasks moved to In Progress column
 - Real-time elapsed time display for active tasks (HH:MM:SS format)
+- Real-world time tracking that continues even when browser is closed
 - Persistent time tracking across page refreshes and sessions
 - Accumulative time tracking when tasks move in and out of In Progress
 - Completion time display for finished tasks in human-readable format
@@ -48,7 +49,7 @@ A modern, feature-rich task management application built with vanilla HTML, CSS,
 ### Data Persistence
 - Automatic localStorage persistence for all tasks and timer states
 - Data migration support for backward compatibility with older versions
-- Timer start times persisted to maintain accuracy across sessions
+- Real-world timestamps persisted to track time even when browser is closed
 - Storage availability detection with user warnings
 - All task data stored locally in browser (no external servers)
 
@@ -140,6 +141,7 @@ KanbanStickyNotes-SimpleCopy/
 ### Time Tracking
 - Tasks automatically start tracking time when moved to In Progress
 - The timer displays elapsed time in real-time (HH:MM:SS format)
+- Time tracking continues even when browser is closed (tracks real-world time)
 - Time accumulates across multiple sessions and persists through page refreshes
 - Timer continues accurately even when adding, editing, or deleting other tasks
 - Completed tasks show total time spent in a human-readable format (e.g., "2 hours 15 minutes 30 seconds")
@@ -181,7 +183,7 @@ Works in all modern browsers that support:
 ### Storage
 All task data is stored locally in the browser's localStorage, including:
 - Task details (text, description, priority, due date)
-- Time tracking data (timeSpent, timerStartTime)
+- Time tracking data (timeSpent, inProgressSince, timerStartTime)
 - Task metadata (createdAt, lastEditedAt, startedAt, completedAt)
 
 No data is sent to external servers except when using Google Calendar integration (which requires explicit user authorization). The application works completely offline once loaded.

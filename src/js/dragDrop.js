@@ -68,15 +68,17 @@ function handleDrop(event) {
     
     // Start timer when moving to In Progress
     if (newColumn === 'inprogress' && oldColumn !== 'inprogress') {
-      // Calculate start time to account for previously accumulated time
-      const previousTimeSpent = note.timeSpent || 0;
-      const adjustedStartTime = Date.now() - previousTimeSpent;
-      
+      // Record the actual timestamp when task enters In Progress
       if (!note.startedAt) {
         note.startedAt = Date.now();
       }
       
-      // Store the timer start time in the note
+      // Store when this In Progress session started
+      note.inProgressSince = Date.now();
+      
+      // Calculate adjusted start time for timer display (accounts for previous time)
+      const previousTimeSpent = note.timeSpent || 0;
+      const adjustedStartTime = Date.now() - previousTimeSpent;
       note.timerStartTime = adjustedStartTime;
       
       timerManager.startTimer(noteId, adjustedStartTime);
@@ -84,9 +86,19 @@ function handleDrop(event) {
     
     // Stop timer and save elapsed time when leaving In Progress
     if (oldColumn === 'inprogress' && newColumn !== 'inprogress') {
-      const elapsedTime = timerManager.stopTimer(noteId);
-      note.timeSpent = elapsedTime;
+      // Calculate actual elapsed time since task entered In Progress
+      if (note.inProgressSince) {
+        const sessionTime = Date.now() - note.inProgressSince;
+        note.timeSpent = (note.timeSpent || 0) + sessionTime;
+      } else {
+        // Fallback to timer manager if inProgressSince not set
+        const elapsedTime = timerManager.stopTimer(noteId);
+        note.timeSpent = elapsedTime;
+      }
+      
       note.timerStartTime = null;
+      note.inProgressSince = null;
+      timerManager.stopTimer(noteId);
       
       // Mark as completed if moving to Done
       if (newColumn === 'done') {

@@ -191,25 +191,34 @@ function initializeTimers() {
   
   notes.forEach(note => {
     if (note.column === 'inprogress') {
-      // Use stored timer start time if available, otherwise calculate it
-      let adjustedStartTime;
+      // Calculate actual elapsed time including time when browser was closed
+      let totalElapsedTime = note.timeSpent || 0;
       
-      if (note.timerStartTime) {
-        // Use the stored timer start time from when task was moved to In Progress
-        adjustedStartTime = note.timerStartTime;
-      } else {
-        // Fallback: calculate adjusted start time (for backward compatibility)
-        const previousTimeSpent = note.timeSpent || 0;
-        adjustedStartTime = Date.now() - previousTimeSpent;
-        // Store it for future use
-        note.timerStartTime = adjustedStartTime;
+      if (note.inProgressSince) {
+        // Add time since task entered In Progress (even if browser was closed)
+        const currentSessionTime = Date.now() - note.inProgressSince;
+        totalElapsedTime += currentSessionTime;
+      }
+      
+      // Set adjusted start time for timer display
+      const adjustedStartTime = Date.now() - totalElapsedTime;
+      note.timerStartTime = adjustedStartTime;
+      
+      // Set first started timestamp if not already set
+      if (!note.startedAt) {
+        note.startedAt = note.inProgressSince || Date.now();
+      }
+      
+      // Ensure inProgressSince is set (for backward compatibility)
+      if (!note.inProgressSince) {
+        note.inProgressSince = Date.now();
       }
       
       timerManager.startTimer(note.id, adjustedStartTime);
     }
   });
   
-  // Save notes to persist any timerStartTime updates
+  // Save notes to persist any updates
   saveNotes(notes);
 }
 
