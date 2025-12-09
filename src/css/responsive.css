@@ -6,11 +6,12 @@
 
 /* Improve touch targets for mobile */
 @media (max-width: 768px) {
+
   /* Better spacing for touch */
   .stickyNote {
     margin-bottom: var(--space-sm);
   }
-  
+
   /* Prevent text selection on double tap */
   .stickyNote,
   .boardColumn h2,
@@ -19,7 +20,7 @@
     user-select: none;
     -webkit-tap-highlight-color: transparent;
   }
-  
+
   /* Allow text selection in modals */
   .modalBody,
   .modalBody * {
@@ -34,27 +35,27 @@
     min-height: auto;
     padding: var(--space-sm) var(--space-md);
   }
-  
+
   .appHeaderCenter {
     margin-bottom: 0;
   }
-  
+
   .appTitle {
     font-size: var(--font-size-lg);
   }
-  
+
   .appSubtitle {
     display: none;
   }
-  
+
   .boardColumn {
     min-height: 250px;
   }
-  
+
   .notesContainer {
     max-height: calc(100vh - 280px);
   }
-  
+
   .modalContent {
     max-height: 85vh;
   }
@@ -65,19 +66,19 @@
   .appHeader {
     padding: var(--space-xs) var(--space-sm);
   }
-  
+
   .liveClock {
     padding: var(--space-sm);
   }
-  
+
   .clockDate {
     display: none;
   }
-  
+
   .boardColumn {
     min-height: 200px;
   }
-  
+
   .notesContainer {
     max-height: calc(100vh - 240px);
   }
@@ -89,21 +90,21 @@
     grid-template-columns: 1fr;
     gap: var(--space-xl);
   }
-  
+
   .boardColumn {
     min-height: 320px;
   }
-  
+
   #addNoteForm {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: var(--space-md);
   }
-  
+
   #noteText {
     grid-column: 1 / -1;
   }
-  
+
   #addNoteForm button {
     grid-column: 1 / -1;
   }
@@ -114,7 +115,7 @@
   .appTitle {
     font-size: var(--font-size-xl);
   }
-  
+
   .themeToggle,
   .myEventsBtn {
     padding: var(--space-md) var(--space-lg);
@@ -127,67 +128,69 @@
     padding: var(--space-xs);
     gap: var(--space-xs);
   }
-  
+
   .appTitle {
     font-size: 14px;
   }
-  
+
   .appSubtitle {
     font-size: 7px;
   }
-  
+
   .liveClock {
     padding: var(--space-xs) var(--space-sm);
   }
-  
+
   .clockTime {
     font-size: 12px;
   }
-  
+
   .clockDate {
     font-size: 7px;
   }
-  
+
   .themeToggle,
   .myEventsBtn {
     padding: var(--space-xs) var(--space-sm);
     font-size: 10px;
   }
-  
+
   .themeToggleLabel,
   .myEventsBtnLabel {
     font-size: 10px;
   }
-  
+
   .container {
     padding: var(--space-xs);
   }
-  
+
   #addNoteForm {
     padding: var(--space-sm);
     gap: var(--space-xs);
   }
-  
+
   .boardColumn {
     padding: var(--space-xs) var(--space-sm);
     min-height: 220px;
   }
-  
+
   .boardColumn h2 {
     font-size: 13px;
   }
-  
+
   .stickyNote {
     padding: var(--space-xs) var(--space-sm);
   }
-  
+
   .noteText {
     font-size: 12px;
   }
 }
 
 /* High DPI screens */
-@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+@media (-webkit-min-device-pixel-ratio: 2),
+(min-resolution: 192dpi) {
+
   .stickyNote,
   .boardColumn,
   .modalContent {
@@ -198,6 +201,7 @@
 
 /* Prevent zoom on input focus for iOS */
 @media (max-width: 768px) {
+
   input[type="text"],
   input[type="datetime-local"],
   input[type="date"],
@@ -215,13 +219,13 @@
     padding-right: max(var(--space-md), env(safe-area-inset-right));
     padding-top: max(var(--space-md), env(safe-area-inset-top));
   }
-  
+
   .container {
     padding-left: max(var(--space-lg), env(safe-area-inset-left));
     padding-right: max(var(--space-lg), env(safe-area-inset-right));
     padding-bottom: max(var(--space-lg), env(safe-area-inset-bottom));
   }
-  
+
   @media (max-width: 768px) {
     .container {
       padding-left: max(var(--space-sm), env(safe-area-inset-left));
@@ -232,6 +236,7 @@
 
 /* Improve scrolling performance on mobile */
 @media (max-width: 768px) {
+
   .notesContainer,
   .modalBody,
   .googleEventsListContainer {
@@ -241,17 +246,17 @@
 }
 
 /* Reduce animations on low-end devices */
-@media (max-width: 480px) {
+/* @media (max-width: 480px) {
   * {
     animation-duration: 0.2s !important;
     transition-duration: 0.15s !important;
   }
-  
+
   .stickyNote:hover {
     transform: translateY(-2px);
   }
-  
+
   #addNoteForm button:hover {
     transform: translateY(-1px);
   }
-}
+} */

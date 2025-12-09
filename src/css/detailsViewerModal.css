@@ -10,11 +10,13 @@
 .taskDetailsModal .modalContent {
   max-width: 700px;
 }
+
 .detailsView {
   display: flex;
   flex-direction: column;
   gap: var(--space-md);
 }
+
 .detailSection {
   display: flex;
   flex-direction: column;
@@ -24,23 +26,28 @@
   border-radius: var(--radius-md);
   border: 1px solid rgba(160, 168, 192, 0.1);
 }
+
 .detailRow .detailSection {
   padding: var(--space-sm) var(--space-md);
 }
+
 .detailRow .detailSection .detailLabel {
   margin-bottom: var(--space-sm);
 }
+
 .detailRow .detailSection .detailValue {
   width: 100%;
   margin: 0;
   padding: 0;
 }
+
 .detailSection.highlight {
   background: linear-gradient(135deg, rgba(0, 240, 255, 0.08), rgba(157, 0, 255, 0.08));
   padding: var(--space-md);
   border-radius: var(--radius-md);
   border-left: 3px solid var(--accent-neon-cyan);
 }
+
 .detailRow {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -48,6 +55,7 @@
   align-items: stretch;
   grid-auto-rows: 1fr;
 }
+
 .detailLabel {
   font-size: var(--font-size-sm);
   font-weight: var(--font-weight-semibold);
@@ -58,21 +66,25 @@
   align-items: center;
   gap: var(--space-xs);
 }
+
 .detailLabel i {
   color: var(--accent-neon-cyan);
   font-size: var(--font-size-base);
 }
+
 .detailValue {
   font-size: var(--font-size-sm);
   color: var(--text-primary);
   line-height: var(--line-height-normal);
   padding: var(--space-xs) 0;
 }
+
 .detailValue.taskName {
   font-size: var(--font-size-xl);
   font-weight: var(--font-weight-bold);
   color: var(--accent-neon-cyan);
 }
+
 .detailValue.description {
   white-space: pre-wrap;
   background: var(--bg-elevated);
@@ -80,12 +92,14 @@
   border-radius: var(--radius-md);
   border-left: 3px solid rgba(0, 240, 255, 0.3);
 }
+
 .detailValue.dueDate {
   font-family: var(--font-mono);
   font-weight: var(--font-weight-semibold);
   font-size: var(--font-size-lg);
   color: var(--accent-neon-cyan);
 }
+
 .statusBadge {
   display: flex;
   align-items: center;
@@ -100,42 +114,49 @@
   height: 44px;
   box-sizing: border-box;
 }
+
 .statusBadge.statusTodo {
   background: rgba(0, 240, 255, 0.15);
   color: var(--status-todo);
   border: 1px solid rgba(0, 240, 255, 0.4);
   box-shadow: 0 0 10px var(--status-todo-glow);
 }
+
 .statusBadge.statusInprogress {
   background: rgba(204, 255, 0, 0.15);
   color: var(--status-inprogress);
   border: 1px solid rgba(204, 255, 0, 0.4);
   box-shadow: 0 0 10px var(--status-inprogress-glow);
 }
+
 .statusBadge.statusDone {
   background: rgba(157, 0, 255, 0.15);
   color: var(--status-done);
   border: 1px solid rgba(157, 0, 255, 0.4);
   box-shadow: 0 0 10px var(--status-done-glow);
 }
+
 body:not(.darkMode) .statusBadge.statusTodo {
   background: rgba(9, 105, 218, 0.1);
   color: #0969da;
   border: 1px solid rgba(9, 105, 218, 0.3);
   box-shadow: 0 0 10px rgba(9, 105, 218, 0.15);
 }
+
 body:not(.darkMode) .statusBadge.statusInprogress {
   background: rgba(26, 127, 55, 0.1);
   color: #1a7f37;
   border: 1px solid rgba(26, 127, 55, 0.3);
   box-shadow: 0 0 10px rgba(26, 127, 55, 0.15);
 }
+
 body:not(.darkMode) .statusBadge.statusDone {
   background: rgba(130, 80, 223, 0.1);
   color: #8250df;
   border: 1px solid rgba(130, 80, 223, 0.3);
   box-shadow: 0 0 10px rgba(130, 80, 223, 0.15);
 }
+
 .detailsView .priorityBadge {
   display: flex !important;
   align-items: center;
@@ -153,70 +174,81 @@ body:not(.darkMode) .statusBadge.statusDone {
   height: 44px;
   box-sizing: border-box;
 }
+
 .detailsView .priorityBadge.priorityHigh {
   background: var(--priority-high-bg);
   color: var(--priority-high);
   border: 1px solid var(--priority-high);
   box-shadow: 0 0 10px var(--priority-high-glow);
 }
+
 .detailsView .priorityBadge.priorityMedium {
   background: var(--priority-medium-bg);
   color: var(--priority-medium);
   border: 1px solid var(--priority-medium);
   box-shadow: 0 0 10px var(--priority-medium-glow);
 }
+
 .detailsView .priorityBadge.priorityLow {
   background: var(--priority-low-bg);
   color: var(--priority-low);
   border: 1px solid var(--priority-low);
   box-shadow: 0 0 10px var(--priority-low-glow);
 }
+
 .taskDetailsModal .modalFooter {
   justify-content: space-between;
 }
+
 .btnDelete {
   background: linear-gradient(135deg, rgba(239, 68, 68, 0.15), rgba(220, 38, 38, 0.15));
   color: var(--color-danger);
   border: 1px solid rgba(239, 68, 68, 0.3);
 }
+
 .btnDelete:hover {
   background: linear-gradient(135deg, rgba(239, 68, 68, 0.25), rgba(220, 38, 38, 0.25));
   border-color: var(--color-danger);
   box-shadow: 0 4px 12px rgba(239, 68, 68, 0.3);
 }
+
 .btnEdit {
   background: linear-gradient(135deg, var(--accent-neon-cyan), var(--accent-neon-magenta));
   color: var(--text-inverse);
   border: none;
   box-shadow: var(--shadow-md);
 }
+
 .btnEdit:hover {
   box-shadow: var(--shadow-lg), var(--glow-neon-cyan);
 }
+
 .btnClose {
   background: var(--bg-elevated);
   color: var(--text-primary);
   border: 1px solid rgba(160, 168, 192, 0.2);
 }
+
 .btnClose:hover {
   background: var(--bg-card-hover);
   border-color: var(--text-secondary);
 }
+
 /* Responsive styles for details viewer modal */
 @media (max-width: 768px) {
   .detailRow {
     grid-template-columns: 1fr;
     gap: var(--space-md);
   }
-  
+
   .detailSection {
     padding: var(--space-md);
   }
-  
+
   .detailLabel {
     font-size: var(--font-size-sm);
   }
-  
+
   .detailValue {
     font-size: var(--font-size-sm);
   }
@@ -227,39 +259,39 @@ body:not(.darkMode) .statusBadge.statusDone {
     flex-direction: column-reverse;
     gap: var(--space-sm);
   }
-  
+
   .detailSection {
     padding: var(--space-sm) var(--space-md);
     margin-bottom: var(--space-sm);
   }
-  
+
   .detailLabel {
     font-size: 13px;
     margin-bottom: var(--space-xs);
   }
-  
+
   .detailValue {
     font-size: 14px;
   }
-  
+
   .detailValue.taskName {
     font-size: var(--font-size-base);
   }
-  
+
   .detailValue.description {
     font-size: 14px;
   }
-  
+
   .priorityBadge {
-    font-size: 11px;
+    font-size: 14px;
     padding: 4px 10px;
   }
-  
+
   .statusBadge {
-    font-size: 11px;
+    font-size: 14px;
     padding: 4px 10px;
   }
-  
+
   .btnDelete,
   .btnEdit,
   .btnClose {
@@ -272,11 +304,11 @@ body:not(.darkMode) .statusBadge.statusDone {
   .detailSection {
     padding: var(--space-xs) var(--space-sm);
   }
-  
+
   .detailLabel {
     font-size: 12px;
   }
-  
+
   .detailValue {
     font-size: 13px;
   }
