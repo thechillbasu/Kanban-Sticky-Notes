@@ -345,25 +345,25 @@ body:not(.darkMode) .deleteBtn:active {
 @media (max-width: 480px) {
   .stickyNote {
     padding: var(--space-sm) var(--space-md);
-    min-height: 90px;
+    min-height: 100px;
   }
 
   .noteText {
     font-size: var(--font-size-sm);
-    margin-top: var(--space-lg);
+    margin-top: var(--space-xl);
     padding-right: 70px;
     -webkit-line-clamp: 3;
     line-clamp: 3;
     max-height: 4.2em;
   }
 
-  .editBtn,
-  .deleteBtn {
-    opacity: 1;
-    padding: 6px 9px;
-    font-size: 10px;
+  .priorityBadge {
+    font-size: 1.5px;
+    padding: 0.5px 1px;
     top: 6px;
-    min-width: 38px;
+    left: 6px;
+    letter-spacing: 0px;
+    border-width: 0.5px;
   }
 
   .editBtn {
